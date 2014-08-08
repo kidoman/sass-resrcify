@@ -66,8 +66,6 @@ module Sass
         options[:filename] = full_filename
         options[:importer] = self
 
-        puts full_filename
-
         content = File.read(full_filename)
         content.gsub!(REGEX) do |s|
           asset = @resrcify.resrc($1, full_filename, dest: "static/assets", prefix: "/assets")

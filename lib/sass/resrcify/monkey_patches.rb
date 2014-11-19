@@ -47,7 +47,7 @@ end
 module Sass
   module Importers
     class Filesystem
-      REGEX = /url\([\"\'](.*?)[\"\']\)/
+      REGEX = /url\([\"\'](.*?)([\?\#]+.*?)?[\"\']\)/
 
       alias old_initialize initialize
 
@@ -69,7 +69,7 @@ module Sass
         content = File.read(full_filename)
         content.gsub!(REGEX) do |s|
           asset = @resrcify.resrc($1, full_filename, dest: "static/assets", prefix: "/assets")
-          "url(#{asset})"
+          "url('#{asset}#{$2}')"
         end
 
         Sass::Engine.new(content, options)

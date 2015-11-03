@@ -47,7 +47,7 @@ end
 module Sass
   module Importers
     class Filesystem
-      REGEX = /url\([\"\'](.*?)([\?\#]+.*?)?[\"\']\)/
+      REGEX = /url\([\"\']?(.*?)([\?\#]+.*?)?[\"\']?\)/
 
       alias old_initialize initialize
 
